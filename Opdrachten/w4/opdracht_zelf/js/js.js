@@ -24,7 +24,7 @@ formEl.addEventListener('submit', function(ev){
     creatcookie('color',kleur.value);
     var coo=getCookie('meko');
     console.log(coo);
-    
+
 });
 
 
@@ -45,22 +45,6 @@ function getCookie(key){
     }
     return cookievv;
 }
-
-
-
-function setPageSettings(){
-    var nameValue = getCookie('meko');
-    var colorValue = getCookie('color');
-    body.style.backgroundColor = colorValue;
-    var nameEl = makeElement('h2', 'Hello ' + nameValue);
-
-    contEl.appendChild(nameEl);
-}
-
-
-
-
-
 
 
 
