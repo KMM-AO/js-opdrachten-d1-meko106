@@ -3,78 +3,63 @@ var kleur=document.querySelector('#kleur');
 var usernaam=document.querySelector('#naam');
 // var userval=usernaam.value;
 var body=document.querySelector('body');
-var div2=document.createElement('div'); 
+var div2=document.createElement('div');
 body.appendChild(div2);
 
 
 
-// is nog niet helemaal klaar 
 
+window.onload=function(){
+    uitprint('counter');
+ }
 
 
 formEl.addEventListener('submit', function(ev){ev.preventDefault();
 
 
-    div2.appendChild(maakEL('p',usernaam.value));//let op de p is een object
+    // div2.appendChild(maakEL('p',usernaam.value));//let op de p is een object
     body.style.backgroundColor=kleur.value;
 
 
-    setStorage('meko','student');
-    setStorage('color',kleur.value);
-    div2.appendChild(maakEL('p',usernaam.value));
+
+    if(usernaam.value.length>0){
+        setStorage('naam',usernaam.value);
+        setStorage('color',kleur.value);
+    }
 
 
- 
 
-    
-
-});
-
-var aantal;
-function test(waarde){
-    
-    if(sessionStorage.getItem(waarde)){
+function uitprint(waarde){
+    let aantal;
+    if(localStorage.getItem(waarde)){
+        aantal=Number(localStorage.getItem(waarde));
         aantal+=1;
+        if(Number(aantal)>=1){
+            usernaam.value=localStorage.getItem('naam');
+            kleur.value=localStorage.getItem('color');
+            body.style.backgroundColor=kleur.value;
+        }
     }else{
-        aantal=1;
+        aantal=0;
     }
-    return aantal;
-}
 
-window.onload=function(){
-    console.log(test('meko'));
-}
-
-
-
-
-
-
-
-function getValue(key){
-    let value="";
-    switch(key){
-        case 'meko':                            //deze strig is zelfde als hier onder
-            value=document.cookie.replace(/(?:(?:^|.*;\s*)meko\s*\=\s*([^;]*).*$)|^.*$/, "$1");//haal de waarde
-            break;
-        case 'color':
-            color=document.cookie.replace(/(?:(?:^|.*;\s*)meko\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-            break;
-        default:
-            value="";
+    setStorage(waarde,aantal);
+    if(localStorage.getItem('naam')!=null){
+        tekst+=div2.appendChild(maakEL('p',"Hallo "+localStorage.getItem('naam')));
     }
-    return value;
+    var tekst=div2.appendChild(maakEL('p',"Deze pagina is "+aantal+" keer bezocht"));
 }
+
+
 
 
 
 
 
 function setStorage(key,value){
-    let valuee=sessionStorage.setItem(key,value);
+    let valuee=localStorage.setItem(key,value);
     return valuee;
 }
-
 
 
 

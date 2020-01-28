@@ -1,0 +1,2 @@
+Ga naar confirm en alert (nog een keer herhalen).
+objects java script
